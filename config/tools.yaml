@@ -1,0 +1,108 @@
+tools:
+  web_search:
+    name: web_search
+    description: "Search the web for information and return relevant results"
+    timeout: "10s"
+    parameters:
+      query:
+        type: string
+        description: "The search query"
+        required: true
+
+  code_gen:
+    name: code_gen
+    description: "Generate code in a specified language for a given task"
+    timeout: "30s"
+    parameters:
+      language:
+        type: string
+        description: "Programming language"
+        required: true
+      task:
+        type: string
+        description: "Description of the code to generate"
+        required: true
+      context:
+        type: string
+        description: "Additional context for generation"
+        required: false
+
+  code_review:
+    name: code_review
+    description: "Review code for bugs, security issues, and style problems"
+    timeout: "15s"
+    parameters:
+      code:
+        type: string
+        description: "The code to review"
+        required: true
+      language:
+        type: string
+        description: "Programming language of the code"
+        required: true
+
+  text_gen:
+    name: text_gen
+    description: "Generate structured text on a given topic"
+    timeout: "20s"
+    parameters:
+      topic:
+        type: string
+        description: "The topic to write about"
+        required: true
+      style:
+        type: string
+        description: "Writing style (e.g. technical, casual)"
+        required: false
+      context:
+        type: string
+        description: "Additional context for generation"
+        required: false
+
+  read_file:
+    name: read_file
+    description: "Read file contents from the output directory"
+    timeout: "5s"
+    parameters:
+      path:
+        type: string
+        description: "Relative file path to read"
+        required: true
+
+  write_file:
+    name: write_file
+    description: "Write content to a file in the output directory"
+    timeout: "5s"
+    parameters:
+      path:
+        type: string
+        description: "Relative file path to write"
+        required: true
+      content:
+        type: string
+        description: "File content to write"
+        required: true
+
+  memory_read:
+    name: memory_read
+    description: "Read a value from shared memory by key"
+    timeout: "1s"
+    parameters:
+      key:
+        type: string
+        description: "The memory key to read"
+        required: true
+
+  memory_write:
+    name: memory_write
+    description: "Write a key-value pair to shared memory"
+    timeout: "1s"
+    parameters:
+      key:
+        type: string
+        description: "The memory key to write"
+        required: true
+      value:
+        type: string
+        description: "The value to store"
+        required: true

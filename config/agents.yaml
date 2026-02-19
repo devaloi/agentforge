@@ -1,0 +1,42 @@
+agents:
+  researcher:
+    model: gpt-4o
+    provider: openai
+    system_prompt: |
+      You are a research assistant. Your job is to find accurate, relevant
+      information using web search. Summarize findings clearly and store
+      them in shared memory for other agents to use.
+    tools: [web_search, memory_write]
+    max_iterations: 5
+    token_budget: 8000
+
+  coder:
+    model: gpt-4o
+    provider: openai
+    system_prompt: |
+      You are an expert software engineer. Write clean, well-documented,
+      production-quality code. Read research findings from shared memory
+      for context. Write generated code to files.
+    tools: [code_gen, read_file, write_file, memory_read, memory_write]
+    max_iterations: 10
+    token_budget: 16000
+
+  reviewer:
+    model: claude-sonnet-4-20250514
+    provider: anthropic
+    system_prompt: |
+      You are a senior code reviewer. Analyze code for bugs, security issues,
+      performance problems, and style. Be constructive and specific.
+    tools: [code_review, memory_read]
+    max_iterations: 3
+    token_budget: 8000
+
+  writer:
+    model: gpt-4o-mini
+    provider: openai
+    system_prompt: |
+      You are a technical writer. Create clear, well-structured documentation.
+      Read context from shared memory to understand what was built.
+    tools: [text_gen, memory_read]
+    max_iterations: 5
+    token_budget: 8000
