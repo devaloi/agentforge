@@ -4,8 +4,8 @@ package config
 
 // Config holds the complete application configuration.
 type Config struct {
-	Agents    map[string]AgentConfig   `yaml:"agents"`
-	Tools     map[string]ToolConfig    `yaml:"tools"`
+	Agents    map[string]AgentConfig    `yaml:"agents"`
+	Tools     map[string]ToolConfig     `yaml:"tools"`
 	Providers map[string]ProviderConfig `yaml:"providers"`
 }
 

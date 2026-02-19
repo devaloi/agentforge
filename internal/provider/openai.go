@@ -51,7 +51,7 @@ func (o *OpenAI) ChatComplete(ctx context.Context, messages []Message, tools []T
 	if err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -66,9 +66,9 @@ func (o *OpenAI) ChatComplete(ctx context.Context, messages []Message, tools []T
 }
 
 type openaiRequest struct {
-	Model    string            `json:"model"`
-	Messages []openaiMessage   `json:"messages"`
-	Tools    []openaiTool      `json:"tools,omitempty"`
+	Model    string          `json:"model"`
+	Messages []openaiMessage `json:"messages"`
+	Tools    []openaiTool    `json:"tools,omitempty"`
 }
 
 type openaiMessage struct {
@@ -79,9 +79,9 @@ type openaiMessage struct {
 }
 
 type openaiToolCall struct {
-	ID       string               `json:"id"`
-	Type     string               `json:"type"`
-	Function openaiToolCallFunc   `json:"function"`
+	ID       string             `json:"id"`
+	Type     string             `json:"type"`
+	Function openaiToolCallFunc `json:"function"`
 }
 
 type openaiToolCallFunc struct {
@@ -90,8 +90,8 @@ type openaiToolCallFunc struct {
 }
 
 type openaiTool struct {
-	Type     string           `json:"type"`
-	Function openaiToolDef    `json:"function"`
+	Type     string        `json:"type"`
+	Function openaiToolDef `json:"function"`
 }
 
 type openaiToolDef struct {
@@ -139,12 +139,8 @@ func (o *OpenAI) buildRequest(messages []Message, tools []ToolDef, cfg ChatConfi
 	oaiTools := make([]openaiTool, 0, len(tools))
 	for _, t := range tools {
 		oaiTools = append(oaiTools, openaiTool{
-			Type: "function",
-			Function: openaiToolDef{
-				Name:        t.Name,
-				Description: t.Description,
-				Parameters:  t.Parameters,
-			},
+			Type:     "function",
+			Function: openaiToolDef(t),
 		})
 	}
 

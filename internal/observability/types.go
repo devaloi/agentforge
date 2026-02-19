@@ -32,8 +32,8 @@ type TraceEvent struct {
 
 // TraceSpan represents a logical span of execution (e.g., an entire agent run).
 type TraceSpan struct {
-	Name   string        `json:"name"`
-	Start  time.Time     `json:"start"`
-	End    time.Time     `json:"end"`
-	Events []TraceEvent  `json:"events"`
+	Name   string       `json:"name"`
+	Start  time.Time    `json:"start"`
+	End    time.Time    `json:"end"`
+	Events []TraceEvent `json:"events"`
 }

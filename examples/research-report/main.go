@@ -34,7 +34,7 @@ func main() {
 		},
 		&provider.Response{
 			Content: "# WebAssembly in 2025: A Research Report\n\nWebAssembly has matured significantly, with broad adoption across browsers and server-side runtimes. Performance benchmarks show near-native execution speed. The ecosystem includes WASI for system interfaces and component model for composition.",
-			Usage: provider.Usage{TotalTokens: 60},
+			Usage:   provider.Usage{TotalTokens: 60},
 		},
 	)
 

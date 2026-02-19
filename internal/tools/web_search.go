@@ -11,8 +11,10 @@ import (
 // WebSearch simulates web search (or delegates to a real API when configured).
 type WebSearch struct{}
 
-func (w *WebSearch) Name() string        { return "web_search" }
-func (w *WebSearch) Description() string { return "Search the web for information and return relevant results" }
+func (w *WebSearch) Name() string { return "web_search" }
+func (w *WebSearch) Description() string {
+	return "Search the web for information and return relevant results"
+}
 
 func (w *WebSearch) Schema() provider.JSONSchema {
 	return NewSchemaBuilder().

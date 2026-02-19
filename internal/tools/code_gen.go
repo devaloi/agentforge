@@ -19,8 +19,10 @@ func NewCodeGen(p provider.Provider, model string) *CodeGen {
 	return &CodeGen{provider: p, model: model}
 }
 
-func (c *CodeGen) Name() string        { return "code_gen" }
-func (c *CodeGen) Description() string { return "Generate code in a specified language for a given task" }
+func (c *CodeGen) Name() string { return "code_gen" }
+func (c *CodeGen) Description() string {
+	return "Generate code in a specified language for a given task"
+}
 
 func (c *CodeGen) Schema() provider.JSONSchema {
 	return NewSchemaBuilder().

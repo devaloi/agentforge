@@ -29,7 +29,7 @@ func TestAnthropicChatComplete(t *testing.T) {
 			Usage:      anthropicUsage{InputTokens: 10, OutputTokens: 5},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -65,7 +65,7 @@ func TestAnthropicToolUse(t *testing.T) {
 			Usage:      anthropicUsage{InputTokens: 20, OutputTokens: 10},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -93,7 +93,7 @@ func TestAnthropicToolUse(t *testing.T) {
 func TestAnthropicError(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(`{"error": {"message": "invalid request"}}`))
+		_, _ = w.Write([]byte(`{"error": {"message": "invalid request"}}`))
 	}))
 	defer server.Close()
 

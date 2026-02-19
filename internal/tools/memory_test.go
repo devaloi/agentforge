@@ -22,7 +22,7 @@ func TestMemoryWriteAndRead(t *testing.T) {
 	}
 
 	var writeResult map[string]any
-	json.Unmarshal([]byte(out), &writeResult)
+	_ = json.Unmarshal([]byte(out), &writeResult)
 	if writeResult["success"] != true {
 		t.Error("write should succeed")
 	}
@@ -33,7 +33,7 @@ func TestMemoryWriteAndRead(t *testing.T) {
 	}
 
 	var readResult map[string]any
-	json.Unmarshal([]byte(out), &readResult)
+	_ = json.Unmarshal([]byte(out), &readResult)
 	if readResult["found"] != true {
 		t.Error("key should be found")
 	}
@@ -52,7 +52,7 @@ func TestMemoryReadNotFound(t *testing.T) {
 	}
 
 	var result map[string]any
-	json.Unmarshal([]byte(out), &result)
+	_ = json.Unmarshal([]byte(out), &result)
 	if result["found"] != false {
 		t.Error("key should not be found")
 	}
@@ -80,7 +80,7 @@ func TestMemoryWriteAttribution(t *testing.T) {
 	store := memory.NewStore()
 	mw := NewMemoryWrite(store, "coder")
 
-	mw.Execute(context.Background(), map[string]any{
+	_, _ = mw.Execute(context.Background(), map[string]any{
 		"key":   "code",
 		"value": "package main",
 	})

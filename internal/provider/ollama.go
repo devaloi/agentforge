@@ -48,7 +48,7 @@ func (o *Ollama) ChatComplete(ctx context.Context, messages []Message, tools []T
 	if err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -63,16 +63,16 @@ func (o *Ollama) ChatComplete(ctx context.Context, messages []Message, tools []T
 }
 
 type ollamaRequest struct {
-	Model    string           `json:"model"`
-	Messages []ollamaMessage  `json:"messages"`
-	Tools    []ollamaToolDef  `json:"tools,omitempty"`
-	Stream   bool             `json:"stream"`
+	Model    string          `json:"model"`
+	Messages []ollamaMessage `json:"messages"`
+	Tools    []ollamaToolDef `json:"tools,omitempty"`
+	Stream   bool            `json:"stream"`
 }
 
 type ollamaMessage struct {
-	Role      string            `json:"role"`
-	Content   string            `json:"content"`
-	ToolCalls []ollamaToolCall  `json:"tool_calls,omitempty"`
+	Role      string           `json:"role"`
+	Content   string           `json:"content"`
+	ToolCalls []ollamaToolCall `json:"tool_calls,omitempty"`
 }
 
 type ollamaToolCall struct {
@@ -85,8 +85,8 @@ type ollamaToolCallFunc struct {
 }
 
 type ollamaToolDef struct {
-	Type     string         `json:"type"`
-	Function ollamaFuncDef  `json:"function"`
+	Type     string        `json:"type"`
+	Function ollamaFuncDef `json:"function"`
 }
 
 type ollamaFuncDef struct {
@@ -112,12 +112,8 @@ func (o *Ollama) buildRequest(messages []Message, tools []ToolDef, cfg ChatConfi
 	ollamaTools := make([]ollamaToolDef, 0, len(tools))
 	for _, t := range tools {
 		ollamaTools = append(ollamaTools, ollamaToolDef{
-			Type: "function",
-			Function: ollamaFuncDef{
-				Name:        t.Name,
-				Description: t.Description,
-				Parameters:  t.Parameters,
-			},
+			Type:     "function",
+			Function: ollamaFuncDef(t),
 		})
 	}
 

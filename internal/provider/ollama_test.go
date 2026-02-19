@@ -21,7 +21,7 @@ func TestOllamaChatComplete(t *testing.T) {
 			Message: ollamaMessage{Role: "assistant", Content: "Hello from Ollama"},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -52,7 +52,7 @@ func TestOllamaToolCall(t *testing.T) {
 			},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -77,7 +77,7 @@ func TestOllamaToolCall(t *testing.T) {
 func TestOllamaError(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte(`{"error": "model not found"}`))
+		_, _ = w.Write([]byte(`{"error": "model not found"}`))
 	}))
 	defer server.Close()
 

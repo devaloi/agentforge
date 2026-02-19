@@ -31,7 +31,7 @@ func main() {
 		},
 		&provider.Response{
 			Content: "Based on my research, Go is an excellent choice for microservices:\n\n1. **Fast compilation** — Go compiles to a single binary in seconds\n2. **Goroutines** — lightweight concurrency primitives perfect for handling many requests\n3. **Standard library** — net/http provides a production-grade HTTP server\n4. **Small footprint** — Go binaries are small and start fast, ideal for containers",
-			Usage: provider.Usage{TotalTokens: 80},
+			Usage:   provider.Usage{TotalTokens: 80},
 		},
 	)
 

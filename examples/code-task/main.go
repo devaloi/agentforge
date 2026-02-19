@@ -35,7 +35,7 @@ func main() {
 		},
 		&provider.Response{
 			Content: "The REST API has been successfully built with data models, CRUD handlers, and code review. All components follow Go best practices.",
-			Usage: provider.Usage{TotalTokens: 50},
+			Usage:   provider.Usage{TotalTokens: 50},
 		},
 	)
 

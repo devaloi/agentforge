@@ -8,8 +8,8 @@ func TestDAGSimpleChain(t *testing.T) {
 	dag.AddNode(SubTask{ID: "b", Description: "Step B", AgentType: "coder"})
 	dag.AddNode(SubTask{ID: "c", Description: "Step C", AgentType: "reviewer"})
 
-	dag.AddEdge("a", "b")
-	dag.AddEdge("b", "c")
+	_ = dag.AddEdge("a", "b")
+	_ = dag.AddEdge("b", "c")
 
 	layers, err := dag.TopologicalSort()
 	if err != nil {
@@ -37,10 +37,10 @@ func TestDAGDiamondDependency(t *testing.T) {
 	dag.AddNode(SubTask{ID: "code_b", AgentType: "coder"})
 	dag.AddNode(SubTask{ID: "review", AgentType: "reviewer"})
 
-	dag.AddEdge("research", "code_a")
-	dag.AddEdge("research", "code_b")
-	dag.AddEdge("code_a", "review")
-	dag.AddEdge("code_b", "review")
+	_ = dag.AddEdge("research", "code_a")
+	_ = dag.AddEdge("research", "code_b")
+	_ = dag.AddEdge("code_a", "review")
+	_ = dag.AddEdge("code_b", "review")
 
 	layers, err := dag.TopologicalSort()
 	if err != nil {
@@ -67,9 +67,9 @@ func TestDAGCycleDetection(t *testing.T) {
 	dag.AddNode(SubTask{ID: "b"})
 	dag.AddNode(SubTask{ID: "c"})
 
-	dag.AddEdge("a", "b")
-	dag.AddEdge("b", "c")
-	dag.AddEdge("c", "a")
+	_ = dag.AddEdge("a", "b")
+	_ = dag.AddEdge("b", "c")
+	_ = dag.AddEdge("c", "a")
 
 	_, err := dag.TopologicalSort()
 	if err == nil {

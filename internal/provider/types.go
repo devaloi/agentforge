@@ -61,10 +61,10 @@ type Response struct {
 
 // StreamChunk represents a single chunk in a streaming response.
 type StreamChunk struct {
-	Delta        string   `json:"delta"`
-	ToolCallID   string   `json:"tool_call_id,omitempty"`
-	ToolCallName string   `json:"tool_call_name,omitempty"`
-	ToolCallArgs string   `json:"tool_call_args,omitempty"`
-	FinishReason string   `json:"finish_reason,omitempty"`
-	Usage        *Usage   `json:"usage,omitempty"`
+	Delta        string `json:"delta"`
+	ToolCallID   string `json:"tool_call_id,omitempty"`
+	ToolCallName string `json:"tool_call_name,omitempty"`
+	ToolCallArgs string `json:"tool_call_args,omitempty"`
+	FinishReason string `json:"finish_reason,omitempty"`
+	Usage        *Usage `json:"usage,omitempty"`
 }

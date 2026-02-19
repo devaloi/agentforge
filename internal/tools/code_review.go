@@ -19,8 +19,10 @@ func NewCodeReview(p provider.Provider, model string) *CodeReview {
 	return &CodeReview{provider: p, model: model}
 }
 
-func (c *CodeReview) Name() string        { return "code_review" }
-func (c *CodeReview) Description() string { return "Review code for bugs, security issues, and style problems" }
+func (c *CodeReview) Name() string { return "code_review" }
+func (c *CodeReview) Description() string {
+	return "Review code for bugs, security issues, and style problems"
+}
 
 func (c *CodeReview) Schema() provider.JSONSchema {
 	return NewSchemaBuilder().

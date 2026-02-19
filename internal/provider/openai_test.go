@@ -27,7 +27,7 @@ func TestOpenAIChatComplete(t *testing.T) {
 			Usage: openaiUsage{PromptTokens: 10, CompletionTokens: 5, TotalTokens: 15},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -50,7 +50,7 @@ func TestOpenAIChatComplete(t *testing.T) {
 func TestOpenAIToolCall(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var req openaiRequest
-		json.NewDecoder(r.Body).Decode(&req)
+		_ = json.NewDecoder(r.Body).Decode(&req)
 
 		if len(req.Tools) != 1 {
 			t.Errorf("tools count = %d, want 1", len(req.Tools))
@@ -75,7 +75,7 @@ func TestOpenAIToolCall(t *testing.T) {
 			Usage: openaiUsage{PromptTokens: 20, CompletionTokens: 10, TotalTokens: 30},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		_ = json.NewEncoder(w).Encode(resp)
 	}))
 	defer server.Close()
 
@@ -112,7 +112,7 @@ func TestOpenAIToolCall(t *testing.T) {
 func TestOpenAIError(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		w.WriteHeader(http.StatusTooManyRequests)
-		w.Write([]byte(`{"error": {"message": "rate limit exceeded"}}`))
+		_, _ = w.Write([]byte(`{"error": {"message": "rate limit exceeded"}}`))
 	}))
 	defer server.Close()
 

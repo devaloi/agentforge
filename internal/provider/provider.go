@@ -4,16 +4,16 @@ import "context"
 
 // ToolDef describes a tool available to the LLM during a conversation.
 type ToolDef struct {
-	Name        string         `json:"name"`
-	Description string         `json:"description"`
-	Parameters  JSONSchema     `json:"parameters"`
+	Name        string     `json:"name"`
+	Description string     `json:"description"`
+	Parameters  JSONSchema `json:"parameters"`
 }
 
 // JSONSchema is a minimal representation of a JSON Schema object.
 type JSONSchema struct {
-	Type       string                `json:"type"`
+	Type       string                 `json:"type"`
 	Properties map[string]SchemaField `json:"properties,omitempty"`
-	Required   []string              `json:"required,omitempty"`
+	Required   []string               `json:"required,omitempty"`
 }
 
 // SchemaField describes a single property in a JSON Schema.

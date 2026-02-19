@@ -9,7 +9,7 @@ import (
 
 func TestReadFileExecute(t *testing.T) {
 	dir := t.TempDir()
-	os.WriteFile(filepath.Join(dir, "test.txt"), []byte("hello world"), 0o644)
+	_ = os.WriteFile(filepath.Join(dir, "test.txt"), []byte("hello world"), 0o644)
 
 	rf := NewReadFile(dir)
 	out, err := rf.Execute(context.Background(), map[string]any{"path": "test.txt"})

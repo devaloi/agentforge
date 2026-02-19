@@ -19,11 +19,11 @@ import (
 )
 
 var (
-	configDir  string
-	outputDir  string
+	configDir    string
+	outputDir    string
 	providerFlag string
-	modelFlag  string
-	verbose    bool
+	modelFlag    string
+	verbose      bool
 )
 
 func main() {
@@ -270,5 +270,3 @@ func createDemoProvider(task string) *provider.MockProvider {
 		},
 	)
 }
-
-

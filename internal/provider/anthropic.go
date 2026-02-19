@@ -52,7 +52,7 @@ func (a *Anthropic) ChatComplete(ctx context.Context, messages []Message, tools 
 	if err != nil {
 		return nil, fmt.Errorf("request: %w", err)
 	}
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
@@ -67,16 +67,16 @@ func (a *Anthropic) ChatComplete(ctx context.Context, messages []Message, tools 
 }
 
 type anthropicRequest struct {
-	Model     string              `json:"model"`
-	MaxTokens int                 `json:"max_tokens"`
-	System    string              `json:"system,omitempty"`
-	Messages  []anthropicMessage  `json:"messages"`
-	Tools     []anthropicToolDef  `json:"tools,omitempty"`
+	Model     string             `json:"model"`
+	MaxTokens int                `json:"max_tokens"`
+	System    string             `json:"system,omitempty"`
+	Messages  []anthropicMessage `json:"messages"`
+	Tools     []anthropicToolDef `json:"tools,omitempty"`
 }
 
 type anthropicMessage struct {
-	Role    string              `json:"role"`
-	Content json.RawMessage     `json:"content"`
+	Role    string          `json:"role"`
+	Content json.RawMessage `json:"content"`
 }
 
 type anthropicContentBlock struct {
@@ -132,7 +132,7 @@ func (a *Anthropic) buildRequest(messages []Message, tools []ToolDef, cfg ChatCo
 			}
 			for _, tc := range m.ToolCalls {
 				var input any
-				json.Unmarshal([]byte(tc.Arguments), &input)
+				_ = json.Unmarshal([]byte(tc.Arguments), &input)
 				blocks = append(blocks, anthropicContentBlock{
 					Type:  "tool_use",
 					ID:    tc.ID,

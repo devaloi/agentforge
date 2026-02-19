@@ -36,7 +36,7 @@ func TestExecuteSequential(t *testing.T) {
 	dag := planner.NewDAG()
 	dag.AddNode(planner.SubTask{ID: "a", Description: "Step A", AgentType: "researcher"})
 	dag.AddNode(planner.SubTask{ID: "b", Description: "Step B", AgentType: "coder", Dependencies: []string{"a"}})
-	dag.AddEdge("a", "b")
+	_ = dag.AddEdge("a", "b")
 
 	exec := New(mockFactory(nil), 4, slog.Default())
 	result, err := exec.Execute(context.Background(), dag)
@@ -92,7 +92,7 @@ func TestExecuteFailurePropagation(t *testing.T) {
 	dag := planner.NewDAG()
 	dag.AddNode(planner.SubTask{ID: "a", Description: "Fail", AgentType: "failing"})
 	dag.AddNode(planner.SubTask{ID: "b", Description: "Depends on fail", AgentType: "coder", Dependencies: []string{"a"}})
-	dag.AddEdge("a", "b")
+	_ = dag.AddEdge("a", "b")
 
 	factory := func(agentType string) (*agent.Agent, error) {
 		if agentType == "failing" {

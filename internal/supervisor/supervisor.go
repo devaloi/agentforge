@@ -15,12 +15,12 @@ import (
 
 // Result holds the complete output of a supervisor run.
 type Result struct {
-	FinalOutput  string                  `json:"final_output"`
+	FinalOutput  string                   `json:"final_output"`
 	TaskResults  map[string]*agent.Result `json:"task_results"`
-	TaskCount    int                     `json:"task_count"`
-	Duration     time.Duration           `json:"duration"`
-	SuccessCount int                     `json:"success_count"`
-	FailureCount int                     `json:"failure_count"`
+	TaskCount    int                      `json:"task_count"`
+	Duration     time.Duration            `json:"duration"`
+	SuccessCount int                      `json:"success_count"`
+	FailureCount int                      `json:"failure_count"`
 }
 
 // Supervisor decomposes a task into sub-tasks and orchestrates their execution.
