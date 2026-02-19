@@ -1,0 +1,4 @@
+{
+  "content": "{\"tasks\":[{\"id\":\"research\",\"description\":\"Research Go REST API best practices\",\"agent\":\"researcher\",\"depends_on\":[]},{\"id\":\"code_models\",\"description\":\"Implement data models\",\"agent\":\"coder\",\"depends_on\":[\"research\"]},{\"id\":\"code_handlers\",\"description\":\"Implement CRUD handlers\",\"agent\":\"coder\",\"depends_on\":[\"research\"]},{\"id\":\"review\",\"description\":\"Review code\",\"agent\":\"reviewer\",\"depends_on\":[\"code_models\",\"code_handlers\"]}]}",
+  "usage": {"prompt_tokens": 100, "completion_tokens": 50, "total_tokens": 150}
+}

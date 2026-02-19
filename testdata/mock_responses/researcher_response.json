@@ -1,0 +1,4 @@
+{
+  "content": "Research findings: Go REST APIs commonly use net/http with gorilla/mux or chi router. Best practices include structured error handling, middleware chains, and graceful shutdown.",
+  "usage": {"prompt_tokens": 50, "completion_tokens": 40, "total_tokens": 90}
+}

@@ -1,0 +1,4 @@
+{
+  "content": "Code review: The implementation follows Go conventions. No critical issues found. Minor suggestions: add context support to handlers, use structured errors.",
+  "usage": {"prompt_tokens": 60, "completion_tokens": 30, "total_tokens": 90}
+}
