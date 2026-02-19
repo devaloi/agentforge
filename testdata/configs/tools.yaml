@@ -1,0 +1,45 @@
+tools:
+  web_search:
+    name: web_search
+    description: "Search the web for information"
+    timeout: "10s"
+    parameters:
+      query:
+        type: string
+        description: "Search query"
+        required: true
+  code_gen:
+    name: code_gen
+    description: "Generate code"
+    timeout: "30s"
+    parameters:
+      language:
+        type: string
+        description: "Programming language"
+        required: true
+      task:
+        type: string
+        description: "Code generation task"
+        required: true
+  memory_read:
+    name: memory_read
+    description: "Read from shared memory"
+    timeout: "1s"
+    parameters:
+      key:
+        type: string
+        description: "Memory key"
+        required: true
+  memory_write:
+    name: memory_write
+    description: "Write to shared memory"
+    timeout: "1s"
+    parameters:
+      key:
+        type: string
+        description: "Memory key"
+        required: true
+      value:
+        type: string
+        description: "Value to store"
+        required: true

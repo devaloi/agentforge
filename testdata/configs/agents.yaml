@@ -1,0 +1,15 @@
+agents:
+  researcher:
+    model: gpt-4o
+    provider: openai
+    system_prompt: "You are a research assistant."
+    tools: [web_search, memory_write]
+    max_iterations: 5
+    token_budget: 8000
+  coder:
+    model: gpt-4o
+    provider: openai
+    system_prompt: "You are an expert software engineer."
+    tools: [code_gen, memory_read, memory_write]
+    max_iterations: 10
+    token_budget: 16000
