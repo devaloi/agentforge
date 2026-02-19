@@ -271,9 +271,4 @@ func createDemoProvider(task string) *provider.MockProvider {
 	)
 }
 
-func resolveModelFromConfig(cfg *config.Config) string {
-	if cfg == nil {
-		return "gpt-4o"
-	}
-	return resolveModel(cfg)
-}
+
