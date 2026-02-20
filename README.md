@@ -1,5 +1,7 @@
 # agentforge
 
+[![CI](https://github.com/devaloi/agentforge/actions/workflows/ci.yml/badge.svg)](https://github.com/devaloi/agentforge/actions/workflows/ci.yml)
+
 A multi-agent orchestration framework in Go — a supervisor agent decomposes tasks into a dependency DAG, delegates to specialized sub-agents (researcher, coder, reviewer, writer), manages shared memory, and synthesizes results. Built from primitives, no frameworks.
 
 ## Architecture
