@@ -1,6 +1,9 @@
 # agentforge
 
 [![CI](https://github.com/devaloi/agentforge/actions/workflows/ci.yml/badge.svg)](https://github.com/devaloi/agentforge/actions/workflows/ci.yml)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/devaloi/agentforge)](go.mod)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Go Report Card](https://goreportcard.com/badge/github.com/devaloi/agentforge)](https://goreportcard.com/report/github.com/devaloi/agentforge)
 
 A multi-agent orchestration framework in Go — a supervisor agent decomposes tasks into a dependency DAG, delegates to specialized sub-agents (researcher, coder, reviewer, writer), manages shared memory, and synthesizes results. Built from primitives, no frameworks.
 
@@ -64,6 +67,13 @@ Loop back to "Call LLM"
 git clone https://github.com/devaloi/agentforge.git
 cd agentforge
 go build -o bin/agentforge ./cmd/agentforge/
+```
+
+### Docker
+
+```bash
+docker build -t agentforge .
+docker run --rm -e OPENAI_API_KEY=$OPENAI_API_KEY agentforge run "Research Go concurrency patterns"
 ```
 
 ## Configuration
@@ -237,3 +247,7 @@ All tests use a mock LLM provider for deterministic, fast, CI-friendly execution
 ## License
 
 MIT
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md). PRs welcome — run `make all` before submitting.
